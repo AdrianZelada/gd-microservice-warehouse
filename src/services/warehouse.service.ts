@@ -43,6 +43,10 @@ function buyInStore(ingredients: any, itemsMissing: any, cbBought: Function ,cbR
 
 export const buildOrder = (recipe: any, ingredients: any,cbBought: Function, cbResult: Function) =>{
     let mIngredients = missingIngredients(recipe, ingredients);
+
+    console.log("mIngredients");
+    console.log(mIngredients);
+     
     if(mIngredients.length > 0) {
         buyInStore(ingredients,mIngredients, cbBought, (newIng:any) =>{
             buildOrder(recipe, newIng, cbBought, cbResult);

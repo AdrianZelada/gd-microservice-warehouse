@@ -7,10 +7,17 @@ dotenv.config();
 import MysqlConnection from './repository/connection';
 import { IngredientModel } from './repository/ingredients';
 import { IngredientsService } from './services/ingredients.service';
+import { PurchaseModel} from './repository/purchase_history';
+import { PurchaseHistoryService } from './services/purchase_history.service';
+
 import WarehouseRoute from './routes/warehouse.route';
 
 const ingredientModel = new IngredientModel(MysqlConnection);
 IngredientsService.configService(ingredientModel)
+
+const purchaseModel = new PurchaseModel(MysqlConnection);
+PurchaseHistoryService.configService(purchaseModel)
+
 const app: Express = express();
 const port = process.env.PORT;
 
