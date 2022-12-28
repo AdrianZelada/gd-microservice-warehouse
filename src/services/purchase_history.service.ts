@@ -20,8 +20,6 @@ export class PurchaseHistoryService {
     }
 
     async add(history: any){
-        console.log("history");
-        console.log(history);
         return this.db.add(history);
     }
 

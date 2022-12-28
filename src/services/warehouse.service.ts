@@ -24,7 +24,6 @@ const takeOutIngredients = (recipe: any, ingredients: any)=>{
 function buyInStore(ingredients: any, itemsMissing: any, cbBought: Function ,cbResult: Function, ind=0){
     if(itemsMissing.length > ind){
         axios.get(`http://${process.env.URL_MARKETPLACE}:${process.env.URL_MARKETPLACE_PORT}/sell`).then((result)=>{
-            console.log(`${itemsMissing[ind]}`, result.data.count);
             if(result.data.count > 0) {
                 cbBought({
                     ingredient: itemsMissing[ind],
@@ -43,10 +42,6 @@ function buyInStore(ingredients: any, itemsMissing: any, cbBought: Function ,cbR
 
 export const buildOrder = (recipe: any, ingredients: any,cbBought: Function, cbResult: Function) =>{
     let mIngredients = missingIngredients(recipe, ingredients);
-
-    console.log("mIngredients");
-    console.log(mIngredients);
-     
     if(mIngredients.length > 0) {
         buyInStore(ingredients,mIngredients, cbBought, (newIng:any) =>{
             buildOrder(recipe, newIng, cbBought, cbResult);

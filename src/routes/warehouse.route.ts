@@ -8,24 +8,18 @@ export default function WarehouseRoute(router: Router) {
     router.post('/', async (req: Request, res: Response) => {
         const ing = req.body.ingredients;
         const orderId = req.body.orderId;
-        console.log("warehouse");
-        console.log(ing)
-        console.log(orderId)
         const ingredientsService = IngredientsService.getInstance();
         const ingredientStore = await ingredientsService.get(); 
         const purchaseHistoryService = PurchaseHistoryService.getInstance();
-        buildOrder(ing, ingredientStore, (data:any) =>{
-            console.log(data);
+        buildOrder(ing, ingredientStore, (data:any) =>{            
             purchaseHistoryService.add({
                 ...data,
                 orderName: orderId
             }).then(( pHistory: any)=>{
-                console.log("pHistory");
-                console.log(pHistory);
+                console.log("pHistory ok");                
             })
         }, (stock: any)=> {
-            ingredientsService.update(stock);
-            console.log('responseeeeee ', orderId);
+            ingredientsService.update(stock);            
             res.json({
                 orderId
             });
