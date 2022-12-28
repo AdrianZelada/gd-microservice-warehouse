@@ -24,5 +24,5 @@ const port = process.env.PORT;
 app.use(bodyParser.json());
 app.use('/warehouse', WarehouseRoute(express.Router()));
 app.listen(port, () => {
-  console.log(`⚡️[server]: Server Warehouse is running at https://localhost:${port}`);
+  console.log(`⚡️[server]: Server - Warehouse is running at https://localhost:${port}`);
 }); 
